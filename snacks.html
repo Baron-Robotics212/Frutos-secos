@@ -10,131 +10,152 @@ body {
   background: #f4f6f8;
   color: #333;
   margin: 0;
-  padding-bottom: 120px;
+  padding-bottom: 100px;
+  font-size: 14px;
 }
 
 h1 {
   text-align: center;
   color: #4CAF50;
-  margin: 25px 0 10px;
+  margin: 20px 0 8px;
+  font-size: 22px;
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 950px;
   margin: auto;
   background: #fff;
-  padding: 25px;
-  border-radius: 20px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  padding: 18px 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .section {
-  margin-top: 25px;
+  margin-top: 18px;
 }
 
 .section h2 {
   color: #4CAF50;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+  font-size: 18px;
 }
 
 .items-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 12px;
 }
 
 .item {
   background: #f9f9f9;
-  border-radius: 12px;
-  padding: 15px;
+  border-radius: 10px;
+  padding: 10px;
   text-align: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
   position: relative;
 }
 
 .item img {
-  width: 80px;
-  height: 80px;
+  width: 65px;
+  height: 65px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 .lupa {
   position: absolute;
-  top: 8px; right: 10px;
+  top: 6px; right: 8px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 15px;
   color: #4CAF50;
   transition: .2s;
 }
 .lupa:hover { transform: scale(1.2); color: #388E3C; }
 
 .select-box {
-  margin-top: 8px;
+  margin-top: 6px;
 }
 .select-box select {
-  padding: 6px;
-  border-radius: 6px;
+  padding: 5px;
+  border-radius: 5px;
   border: 1px solid #ccc;
   width: 100%;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .input-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  margin-top: 10px;
+  gap: 6px;
+  margin-top: 4px;
 }
+.input-label {
+  font-size: 12px;
+  color: #555;
+  margin-top: 6px;
+}
+
 .btn {
-  width: 30px; height: 30px;
+  width: 24px; height: 24px;
   border: none; border-radius: 50%;
-  font-size: 18px; font-weight: bold;
+  font-size: 15px; font-weight: bold;
   background: #e8f5e9; color: #4CAF50;
   cursor: pointer; transition: .2s;
 }
-.btn:hover { transform: scale(1.15); background: #c8e6c9; }
+.btn:hover { transform: scale(1.1); background: #c8e6c9; }
+
 .item input {
-  width: 40px; text-align: center; border: 1px solid #ccc;
-  border-radius: 6px; padding: 4px;
+  width: 34px; text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px; padding: 3px;
+  font-size: 13px;
 }
 
 #total {
   text-align: center;
   font-weight: bold;
-  font-size: 18px;
-  margin-top: 20px;
+  font-size: 16px;
+  margin-top: 16px;
 }
 
 #comprar {
-  display:block; margin:20px auto;
-  padding:12px 25px;
-  background:#4CAF50; color:#fff;
-  font-size:18px; border:none;
-  border-radius:10px; cursor:pointer;
+  display:block;
+  margin:16px auto;
+  padding:9px 18px;
+  background:#4CAF50;
+  color:#fff;
+  font-size:15px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
 }
-#comprar:disabled { background:#ccc; cursor:not-allowed; }
+#comprar:disabled {
+  background:#ccc;
+  cursor:not-allowed;
+}
 
 .modal {
   display: none;
-  position: fixed; z-index: 10;
-  left: 0; top: 0; width: 100%; height: 100%;
+  position: fixed;
+  z-index: 10;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
   background-color: rgba(0,0,0,0.4);
 }
 .modal-content {
   background: white;
-  margin: 15% auto;
-  padding: 20px;
-  border-radius: 12px;
-  width: 80%; max-width: 400px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  margin: 18% auto;
+  padding: 15px;
+  border-radius: 10px;
+  width: 80%; max-width: 360px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
 }
-.modal h2 { color: #4CAF50; }
-.modal ul { padding-left: 20px; }
+.modal h2 { color: #4CAF50; font-size: 18px; }
+.modal ul { padding-left: 18px; font-size: 13px; }
 .close {
   float: right;
-  font-size: 22px;
+  font-size: 20px;
   cursor: pointer;
 }
 .close:hover { color: red; }
@@ -149,6 +170,8 @@ h1 {
     <h2>Snacks Individuales</h2>
     <div class="items-grid" id="snacksIndividuales"></div>
   </div>
+
+<br>
 
   <!-- 🧺 Snacks Combinados -->
   <div class="section" id="combinados">
@@ -171,7 +194,7 @@ h1 {
 
 <script>
 const beneficios = {
-  "Granola": ["Aporta energía sostenida", "Rica en fibra y antioxidantes", "Ideal para el desayuno"],
+  "Granola": ["Aporta energía sostenida", "Rica en fibra y antioxidantes"],
   "Maní tostado": ["Fuente de proteína vegetal", "Energía rápida"],
   "Mix energético": ["Mezcla balanceada", "Ideal para deportistas"],
   "Mix tropical": ["Sabor dulce y natural", "Con frutas deshidratadas"],
@@ -179,33 +202,25 @@ const beneficios = {
 };
 
 const individuales = [
-  {
-    nombre: "Granola",
-    img: "https://cdn-icons-png.flaticon.com/512/1530/1530066.png",
-    opciones: ["Granola clásica", "Granola con miel", "Granola sin azúcar"]
-  },
-  {
-    nombre: "Maní tostado",
-    img: "https://cdn-icons-png.flaticon.com/512/3145/3145765.png"
-  }
+  { nombre: "Granola", img: "https://cdn-icons-png.flaticon.com/512/1530/1530066.png" },
+  { nombre: "Maní tostado", img: "https://cdn-icons-png.flaticon.com/512/3145/3145765.png" },
+  { nombre: "Avena integral", img: "https://cdn-icons-png.flaticon.com/512/3041/3041131.png" },
+  { nombre: "Nueces", img: "https://cdn-icons-png.flaticon.com/512/263/263111.png" },
+  { nombre: "Pasas", img: "https://cdn-icons-png.flaticon.com/512/263/263115.png" },
+  { nombre: "Coco deshidratado", img: "https://cdn-icons-png.flaticon.com/512/263/263116.png" },
+  { nombre: "Almendras", img: "https://cdn-icons-png.flaticon.com/512/263/263118.png" },
+  { nombre: "Semillas de chía", img: "https://cdn-icons-png.flaticon.com/512/263/263113.png" }
 ];
 
 const combinados = [
-  {
-    nombre: "Mix energético",
-    descripcion: "40% maní, 30% almendras, 30% avena integral",
-    img: "https://cdn-icons-png.flaticon.com/512/4151/4151564.png"
-  },
-  {
-    nombre: "Mix tropical",
-    descripcion: "30% almendras, 40% pasas, 30% coco deshidratado",
-    img: "https://cdn-icons-png.flaticon.com/512/263/263115.png"
-  },
-  {
-    nombre: "Mix fitness",
-    descripcion: "50% avena, 25% nueces, 25% semillas de chía",
-    img: "https://cdn-icons-png.flaticon.com/512/263/263111.png"
-  }
+  { nombre: "Mix energético", descripcion: "40% maní, 30% almendras, 30% avena integral", img: "https://cdn-icons-png.flaticon.com/512/4151/4151564.png" },
+  { nombre: "Mix tropical", descripcion: "30% almendras, 40% pasas, 30% coco", img: "https://cdn-icons-png.flaticon.com/512/263/263115.png" },
+  { nombre: "Mix fitness", descripcion: "50% avena, 25% nueces, 25% chía", img: "https://cdn-icons-png.flaticon.com/512/263/263111.png" },
+  { nombre: "Mix dulce", descripcion: "60% avena, 20% miel, 20% pasas", img: "https://cdn-icons-png.flaticon.com/512/263/263120.png" },
+  { nombre: "Mix saludable", descripcion: "30% maní, 40% avena, 30% semillas", img: "https://cdn-icons-png.flaticon.com/512/263/263123.png" },
+  { nombre: "Mix verde", descripcion: "50% almendras, 30% pistachos, 20% avena", img: "https://cdn-icons-png.flaticon.com/512/263/263117.png" },
+  { nombre: "Mix balanceado", descripcion: "25% nueces, 25% avena, 25% coco, 25% pasas", img: "https://cdn-icons-png.flaticon.com/512/263/263119.png" },
+  { nombre: "Mix clásico", descripcion: "33% maní, 33% almendras, 34% pasas", img: "https://cdn-icons-png.flaticon.com/512/263/263121.png" }
 ];
 
 const preciosPorTamaño = {
@@ -225,16 +240,7 @@ function crearItem(snack, contenedor) {
     <span class="lupa" title="Ver beneficios">🔍</span>
     <img src="${snack.img}" alt="${snack.nombre}">
     <p><strong>${snack.nombre}</strong></p>
-
-    ${snack.opciones ? `
-    <div class="select-box">
-      <select class="tipo-snack">
-        ${snack.opciones.map(o => `<option value="${o}">${o}</option>`).join("")}
-      </select>
-    </div>` : ""}
-
-    ${snack.descripcion ? `<p style="font-size:13px;color:#555;">${snack.descripcion}</p>` : ""}
-
+    ${snack.descripcion ? `<p style="font-size:12px;color:#555;">${snack.descripcion}</p>` : ""}
     <div class="select-box">
       <select class="tamano">
         <option value="">Selecciona tamaño</option>
@@ -243,7 +249,7 @@ function crearItem(snack, contenedor) {
         <option value="2000">2000 g - $${preciosPorTamaño[2000].toLocaleString()}</option>
       </select>
     </div>
-
+    <div class="input-label">Número de bolsas:</div>
     <div class="input-container">
       <button class="btn" data-action="minus">−</button>
       <input type="number" min="0" value="0" readonly>
@@ -291,7 +297,6 @@ document.addEventListener("change", e => {
   if (e.target.classList.contains("tamano")) updateTotal();
 });
 
-// Modal de beneficios
 const modal = document.getElementById("modal");
 const close = document.querySelector(".close");
 const benefTitle = document.getElementById("benefTitle");
