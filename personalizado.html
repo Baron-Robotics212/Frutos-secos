@@ -6,207 +6,265 @@
 <title>Crea tu Granola</title>
 <style>
 body {
- margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  overflow-x: hidden;
   font-family: 'Segoe UI', sans-serif;
   background: #f4f6f8;
   color: #333;
   margin: 0;
   padding-bottom: 100px;
+  font-size: 14px;
 }
+
 h1 {
   text-align: center;
   color: #4CAF50;
-  margin: 25px 0;
+  margin: 20px 0 10px;
+  font-size: 22px;
 }
+
 .container {
-  max-width: 1100px;
+  max-width: 950px;
   margin: auto;
   background: #fff;
-  padding: 25px;
-  border-radius: 20px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  padding: 18px 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
+
+h2 {
+  color: #4CAF50;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
 .bag-options {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 25px;
+  gap: 8px;
+  margin-bottom: 18px;
 }
+
 .bag {
   text-align: center;
   cursor: pointer;
   border: 2px solid transparent;
-  border-radius: 12px;
-  padding: 10px;
+  border-radius: 10px;
+  padding: 8px;
   width: 30%;
-  min-width: 160px;
+  min-width: 150px;
   background: #fafafa;
   transition: 0.3s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
 }
 .bag:hover { border-color: #4CAF50; background: #f4fff4; }
 .bag.selected { border-color: #4CAF50; background: #eaffea; }
-.bag img { width: 100px; height: auto; }
+.bag img { width: 80px; height: auto; }
 
 .section {
   display: none;
-  margin-top: 20px;
+  margin-top: 15px;
 }
-.section h2 {
-  text-align: left;
-  color: #4CAF50;
-  margin-bottom: 10px;
-}
+
 .items-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 12px;
 }
+
 .item {
   background: #f9f9f9;
-  border-radius: 12px;
-  padding: 12px;
+  border-radius: 10px;
+  padding: 10px;
   text-align: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
   position: relative;
 }
+
 .item img {
-  width: 70px; height: 70px;
-  border-radius: 10px; object-fit: cover;
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 8px;
 }
-.price { font-size: 14px; color: #777; margin-bottom: 5px; }
+
+.price {
+  font-size: 13px;
+  color: #777;
+  margin: 4px 0;
+}
+
 .input-container {
-  display: flex; justify-content: center; align-items: center; gap: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
 }
+
 .item input {
-  width: 70px; padding: 6px;
-  font-size: 14px; border-radius: 6px;
-  border: 1px solid #ccc; text-align: center;
+  width: 50px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 3px;
+  font-size: 13px;
 }
-.item input::placeholder { color: #aaa; }
+
 .btn {
-  width: 26px; height: 26px;
-  border: none; border-radius: 50%;
-  font-size: 18px; font-weight: bold;
-  background: #e8f5e9; color: #4CAF50;
-  cursor: pointer; transition: .2s;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  font-size: 15px;
+  font-weight: bold;
+  background: #e8f5e9;
+  color: #4CAF50;
+  cursor: pointer;
+  transition: .2s;
 }
-.btn:hover { transform: scale(1.15); background: #c8e6c9; }
+.btn:hover { transform: scale(1.1); background: #c8e6c9; }
 
 .lupa {
   position: absolute;
-  top: 8px; right: 10px;
+  top: 6px;
+  right: 8px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 15px;
   color: #4CAF50;
   transition: .2s;
 }
 .lupa:hover { transform: scale(1.2); color: #388E3C; }
 
+.option-box {
+  background: #f9f9f9;
+  border-radius: 10px;
+  padding: 8px;
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+.toast-note {
+  font-size: 12px;
+  color: #777;
+  margin-top: 3px;
+}
+
+.toggle {
+  position: relative;
+  width: 42px;
+  height: 20px;
+  display: inline-block;
+  margin-top: 6px;
+}
+.toggle input { display: none; }
+.slider {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc;
+  border-radius: 25px;
+  transition: .4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 15px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: .4s;
+}
+.toggle input:checked + .slider { background-color: #4CAF50; }
+.toggle input:checked + .slider:before { transform: translateX(22px); }
+
+#comprar {
+  display:block;
+  margin:16px auto;
+  padding:9px 18px;
+  background:#4CAF50;
+  color:#fff;
+  font-size:15px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+}
+#comprar:disabled {
+  background:#ccc;
+  cursor:not-allowed;
+}
+
 .fixed-progress {
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 100vw; /* 👈 asegura que use todo el ancho real de la ventana */
-  box-sizing: border-box;
+  width: 100vw;        /* 👈 Usa el ancho real de la ventana */
+  margin: 0;           /* 👈 Asegura que no haya margen */
+  padding: 10px 15px;  /* 👌 Pequeño padding lateral simétrico */
   background: white;
   border-top: 2px solid #ddd;
   box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
-  padding: 10px 15px;
-  margin: 0; /* 👈 elimina cualquier margen */
+  box-sizing: border-box; /* 👈 Evita que el padding sume al ancho */
 }
+
 .progress-wrapper {
   position: relative;
-  width: 100%; height: 25px;
-  background: #ddd; border-radius: 10px;
+  width: 100%;
+  height: 20px;
+  background: #ddd;
+  border-radius: 10px;
   overflow: hidden;
 }
+
 .progress-bar {
-   position: absolute;
+  position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 0;
   background: linear-gradient(90deg,#4CAF50,#8BC34A);
-  border-radius: 0 10px 10px 0; /* mantiene redondeado el extremo derecho */
+  border-radius: 0 10px 10px 0;
   transition: width .4s ease-in-out, background .4s;
 }
+
 #statusText {
   text-align: center;
   font-weight: 600;
-  font-size: 15px;
-  margin-top: 8px;
+  font-size: 13px;
+  margin-top: 6px;
 }
+
 #total {
   text-align: center;
   font-weight: bold;
-  font-size: 18px;
-  margin-top: 10px;
+  font-size: 15px;
+  margin-top: 8px;
 }
-
-.option-box {
-  background: #f9f9f9;
-  padding: 10px;
-  border-radius: 12px;
-  margin-top: 15px;
-  text-align: center;
-}
-.toast-note {
-  font-size: 13px;
-  color: #777;
-  margin-top: 5px;
-}
-
-.toggle {
-  position: relative; width: 50px; height: 25px;
-  display: inline-block; margin-top: 8px;
-}
-.toggle input { display: none; }
-.slider {
-  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-  background-color: #ccc; border-radius: 25px; transition: .4s;
-}
-.slider:before {
-  position: absolute; content: "";
-  height: 19px; width: 19px;
-  left: 3px; bottom: 3px;
-  background-color: white; border-radius: 50%;
-  transition: .4s;
-}
-.toggle input:checked + .slider { background-color: #4CAF50; }
-.toggle input:checked + .slider:before { transform: translateX(25px); }
-
-#comprar {
-  display:block; margin:20px auto;
-  padding:12px 25px;
-  background:#4CAF50; color:#fff;
-  font-size:18px; border:none;
-  border-radius:10px; cursor:pointer;
-}
-#comprar:disabled { background:#ccc; cursor:not-allowed; }
 
 .modal {
   display: none;
-  position: fixed; z-index: 10;
-  left: 0; top: 0; width: 100%; height: 100%;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0,0,0,0.4);
 }
 .modal-content {
   background: white;
-  margin: 15% auto;
-  padding: 20px;
-  border-radius: 12px;
-  width: 80%; max-width: 400px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  margin: 18% auto;
+  padding: 15px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 360px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
 }
-.modal h2 { color: #4CAF50; }
-.modal ul { padding-left: 20px; }
+.modal h2 { color: #4CAF50; font-size: 18px; }
+.modal ul { padding-left: 18px; font-size: 13px; }
 .close {
   float: right;
-  font-size: 22px;
+  font-size: 20px;
   cursor: pointer;
 }
 .close:hover { color: red; }
@@ -219,12 +277,11 @@ h1 {
 </style>
 </head>
 <body>
+
 <h1>Arma tu propia granola</h1>
 
 <div class="container">
-  <h2 style= color:#4CAF50; margin-bottom:20px;">
-    Escoge el tamaño de la bolsa
-  </h2>
+  <h2>Escoge el tamaño de la bolsa</h2>
 
   <div class="bag-options">
     <div class="bag" data-size="Pequeña" data-capacity="500">
@@ -241,7 +298,6 @@ h1 {
     </div>
   </div>
 
-  <!-- Secciones -->
   <div class="section" id="frutosSecos">
     <h2>Frutos Secos</h2>
     <div class="items-grid" id="frutosSecosItems"></div>
@@ -257,7 +313,6 @@ h1 {
     <div class="items-grid" id="semillasItems"></div>
   </div>
 
-  <!-- Cantidad de bolsas (movido aquí) -->
   <div class="option-box" id="cantidadBolsasBox" style="display:none;">
     <h3>Cantidad de bolsas</h3>
     <div class="input-container" style="justify-content:center;">
@@ -286,6 +341,7 @@ h1 {
 </div>
 
 <script>
+// === DATOS ===
 const beneficios = {
   "Almendras": ["Salud cardiovascular", "Control del azúcar", "Fortalece los huesos"],
   "Nueces": ["Ricas en omega-3", "Mejoran la memoria", "Reducen el colesterol"],
@@ -322,6 +378,7 @@ const productos = {
   ]
 };
 
+// === CREACIÓN DE ITEMS ===
 function crearItems(lista, contenedorId) {
   const cont = document.getElementById(contenedorId);
   lista.forEach(([nombre, precio, img]) => {
@@ -330,7 +387,7 @@ function crearItems(lista, contenedorId) {
     <div class="item" data-nombre="${nombre}">
       <span class="lupa" title="Consulta los beneficios">🔍</span>
       <img src="${img}" alt="${nombre}">
-      <p>${nombre}</p>
+      <p><strong>${nombre}</strong></p>
       <div class="price">$${precio.toLocaleString()} / 100g</div>
       <div class="input-container">
         <button class="btn" data-action="minus">−</button>
@@ -351,6 +408,7 @@ crearItems(productos.frutosSecos, "frutosSecosItems");
 crearItems(productos.cereales, "cerealesItems");
 crearItems(productos.semillas, "semillasItems");
 
+// === FUNCIONALIDAD ===
 const bags = document.querySelectorAll(".bag");
 const progressBar = document.getElementById("progressBar");
 const statusText = document.getElementById("statusText");
@@ -372,13 +430,12 @@ bags.forEach(b => {
   };
 });
 
-// Botones de cantidad
 document.getElementById("menosBolsas").onclick = () => {
-  if (parseInt(numBolsas.value) > 1) numBolsas.value = parseInt(numBolsas.value) - 1;
+  if (parseInt(numBolsas.value) > 1) numBolsas.value--;
   updateProgress();
 };
 document.getElementById("masBolsas").onclick = () => {
-  numBolsas.value = parseInt(numBolsas.value) + 1;
+  numBolsas.value++;
   updateProgress();
 };
 numBolsas.addEventListener("input", () => {
@@ -415,66 +472,55 @@ function updateProgress() {
     progressBar.style.background = "linear-gradient(90deg,#FFEB3B,#FBC02D)";
     statusText.textContent = `${pct.toFixed(1)}% lleno (${total} g / ${capacidad} g)`;
   } else if (pct < 80) {
-  progressBar.style.background = "linear-gradient(90deg,#FFA726,#FB8C00)";
-  statusText.textContent = `${pct.toFixed(1)}% lleno (${total} g / ${capacidad} g)`;
-} else if (pct < 100) {
-  progressBar.style.background = "linear-gradient(90deg,#8BC34A,#7CB342)";
-  statusText.textContent = `${pct.toFixed(1)}% lleno (${total} g / ${capacidad} g)`;
-} else {
-  progressBar.style.background = "linear-gradient(90deg,#2E7D32,#4CAF50)";
-
-
-  if (Math.round(pct) === 100) {
-    statusText.innerHTML = `${pct.toFixed(1)}% lleno (<span class="full-label">FULL</span>) (${total} g / ${capacidad} g)`;
-  } else {
+    progressBar.style.background = "linear-gradient(90deg,#FFA726,#FB8C00)";
     statusText.textContent = `${pct.toFixed(1)}% lleno (${total} g / ${capacidad} g)`;
+  } else if (pct < 100) {
+    progressBar.style.background = "linear-gradient(90deg,#8BC34A,#7CB342)";
+    statusText.textContent = `${pct.toFixed(1)}% lleno (${total} g / ${capacidad} g)`;
+  } else {
+    progressBar.style.background = "linear-gradient(90deg,#2E7D32,#4CAF50)";
+    if (Math.round(pct) === 100)
+      statusText.innerHTML = `${pct.toFixed(1)}% lleno (<span class="full-label">FULL</span>) (${total} g / ${capacidad} g)`;
+    else
+      statusText.textContent = `${pct.toFixed(1)}% lleno (${total} g / ${capacidad} g)`;
   }
-}
 
   const totalFinal = costo * parseInt(numBolsas.value);
   totalDiv.textContent = `Total: $${totalFinal.toLocaleString()} COP (${numBolsas.value} bolsa${numBolsas.value>1?"s":""})`;
 
-  // Solo habilitado si total == capacidad
   comprarBtn.disabled = total !== capacidad;
 }
 
-// Control botones + y − de cada item
 document.addEventListener("click", e => {
-  const itemBtn = e.target.closest(".item") ? e.target : null;
-  if (itemBtn && e.target.classList.contains("btn")) {
+  if (e.target.classList.contains("btn") && e.target.closest(".item")) {
     const input = e.target.parentElement.querySelector("input");
-    if (!input) return;
     let val = parseInt(input.value) || 0;
-    val += e.target.dataset.action === "plus" ? 100 : -100;
-    if (val < 0) val = 0;
+    if (e.target.dataset.action === "plus") val += 100;
+    else if (val >= 100) val -= 100;
     input.value = val;
     updateProgress();
   }
+  if (e.target.classList.contains("toasted")) updateProgress();
 });
 
-// ✅ Actualiza precio al cambiar el tostado
-document.addEventListener("change", e => {
-  if (e.target.classList.contains("toasted")) {
-    updateProgress();
-  }
-});
-
-// Modal beneficios
-const modal = document.getElementById("modal");
-const close = document.querySelector(".close");
-const benefTitle = document.getElementById("benefTitle");
-const benefList = document.getElementById("benefList");
-document.addEventListener("click", e => {
-  if (e.target.classList.contains("lupa")) {
-    const nombre = e.target.closest(".item").dataset.nombre;
-    benefTitle.textContent = nombre;
-    const list = beneficios[nombre] || ["Fuente natural de nutrientes"];
-    benefList.innerHTML = list.map(b => `<li>${b}</li>`).join("");
+document.querySelectorAll(".lupa").forEach(l => {
+  l.onclick = e => {
+    const item = e.target.closest(".item").dataset.nombre;
+    const modal = document.getElementById("modal");
+    document.getElementById("benefTitle").textContent = `Beneficios de ${item}`;
+    const ul = document.getElementById("benefList");
+    ul.innerHTML = "";
+    beneficios[item].forEach(b => ul.innerHTML += `<li>${b}</li>`);
     modal.style.display = "block";
-  }
+  };
 });
-close.onclick = () => modal.style.display = "none";
-window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
+document.querySelector(".close").onclick = () => document.getElementById("modal").style.display = "none";
+window.onclick = e => { if (e.target === document.getElementById("modal")) document.getElementById("modal").style.display = "none"; };
+
+comprarBtn.onclick = () => {
+  alert("✅ ¡Tu granola ha sido creada con éxito!");
+};
 </script>
 </body>
 </html>
+
