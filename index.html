@@ -3,9 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Crea tu Bolsa de Frutos Secos</title>
+<title>Crea tu Granola</title>
 <style>
 body {
+ margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
   font-family: 'Segoe UI', sans-serif;
   background: #f4f6f8;
   color: #333;
@@ -104,23 +108,30 @@ h1 {
 
 .fixed-progress {
   position: fixed;
-  bottom: 0; left: 0; width: 100%;
+  bottom: 0;
+  left: 0;
+  width: 100vw; /* 👈 asegura que use todo el ancho real de la ventana */
+  box-sizing: border-box;
   background: white;
   border-top: 2px solid #ddd;
   box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
   padding: 10px 15px;
+  margin: 0; /* 👈 elimina cualquier margen */
 }
 .progress-wrapper {
   position: relative;
   width: 100%; height: 25px;
-  background: #ddd; border-radius: 20px;
+  background: #ddd; border-radius: 10px;
   overflow: hidden;
 }
 .progress-bar {
-  position: absolute; top: 0; left: 0;
-  height: 100%; width: 0;
+   position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
   background: linear-gradient(90deg,#4CAF50,#8BC34A);
-  border-radius: 20px;
+  border-radius: 0 10px 10px 0; /* mantiene redondeado el extremo derecho */
   transition: width .4s ease-in-out, background .4s;
 }
 #statusText {
@@ -199,21 +210,34 @@ h1 {
   cursor: pointer;
 }
 .close:hover { color: red; }
+
+.full-label {
+  color: #2e7d32;
+  text-decoration: none;
+  font-weight: bold;
+}
 </style>
 </head>
 <body>
-<h1>Arma tu Bolsa de Frutos Secos</h1>
+<h1>Arma tu propia granola</h1>
 
 <div class="container">
+  <h2 style= color:#4CAF50; margin-bottom:20px;">
+    Escoge el tamaño de la bolsa
+  </h2>
+
   <div class="bag-options">
     <div class="bag" data-size="Pequeña" data-capacity="500">
-      <img src="https://cdn-icons-png.flaticon.com/512/3145/3145765.png"><p>Bolsa Pequeña (500 g)</p>
+      <img src="https://cdn-icons-png.flaticon.com/512/3145/3145765.png">
+      <p>Bolsa Pequeña (500 g)</p>
     </div>
     <div class="bag" data-size="Mediana" data-capacity="1000">
-      <img src="https://cdn-icons-png.flaticon.com/512/3145/3145771.png"><p>Bolsa Mediana (1000 g)</p>
+      <img src="https://cdn-icons-png.flaticon.com/512/3145/3145771.png">
+      <p>Bolsa Mediana (1000 g)</p>
     </div>
     <div class="bag" data-size="Grande" data-capacity="2000">
-      <img src="https://cdn-icons-png.flaticon.com/512/3145/3145782.png"><p>Bolsa Grande (2000 g)</p>
+      <img src="https://cdn-icons-png.flaticon.com/512/3145/3145782.png">
+      <p>Bolsa Grande (2000 g)</p>
     </div>
   </div>
 
@@ -388,15 +412,24 @@ function updateProgress() {
     progressBar.style.background = "linear-gradient(90deg,#ff5f5f,#d32f2f)";
     statusText.textContent = `🚫 Sobrecargado (${total} g / ${capacidad} g)`;
   } else if (pct < 60) {
-    progressBar.style.background = "linear-gradient(90deg,#4CAF50,#8BC34A)";
-    statusText.textContent = `${pct.toFixed(1)}% lleno (${total} g / ${capacidad} g)`;
-  } else if (pct < 90) {
     progressBar.style.background = "linear-gradient(90deg,#FFEB3B,#FBC02D)";
     statusText.textContent = `${pct.toFixed(1)}% lleno (${total} g / ${capacidad} g)`;
+  } else if (pct < 80) {
+  progressBar.style.background = "linear-gradient(90deg,#FFA726,#FB8C00)";
+  statusText.textContent = `${pct.toFixed(1)}% lleno (${total} g / ${capacidad} g)`;
+} else if (pct < 100) {
+  progressBar.style.background = "linear-gradient(90deg,#8BC34A,#7CB342)";
+  statusText.textContent = `${pct.toFixed(1)}% lleno (${total} g / ${capacidad} g)`;
+} else {
+  progressBar.style.background = "linear-gradient(90deg,#2E7D32,#4CAF50)";
+
+
+  if (Math.round(pct) === 100) {
+    statusText.innerHTML = `${pct.toFixed(1)}% lleno (<span class="full-label">FULL</span>) (${total} g / ${capacidad} g)`;
   } else {
-    progressBar.style.background = "linear-gradient(90deg,#FFA726,#FB8C00)";
     statusText.textContent = `${pct.toFixed(1)}% lleno (${total} g / ${capacidad} g)`;
   }
+}
 
   const totalFinal = costo * parseInt(numBolsas.value);
   totalDiv.textContent = `Total: $${totalFinal.toLocaleString()} COP (${numBolsas.value} bolsa${numBolsas.value>1?"s":""})`;
