@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tienda de Snacks Naturales</title>
+<style>
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f4f6f8;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  max-width: 800px;
+  width: 90%;
+  padding: 40px 30px;
+  text-align: center;
+}
+
+h1 {
+  color: #4CAF50;
+  margin-bottom: 25px;
+  font-size: 28px;
+}
+
+.options {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.option {
+  flex: 1;
+  min-width: 250px;
+  background: #f9f9f9;
+  border-radius: 16px;
+  padding: 25px 15px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.option:hover {
+  transform: translateY(-4px);
+  border-color: #4CAF50;
+  background: #f4fff4;
+}
+
+.option img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.option h2 {
+  color: #4CAF50;
+  margin-bottom: 8px;
+}
+
+.option p {
+  color: #666;
+  font-size: 15px;
+}
+
+footer {
+  margin-top: 25px;
+  font-size: 13px;
+  color: #777;
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Bienvenido a Tu Tienda de Snacks Naturales</h1>
+    <div class="options">
+      <div class="option" onclick="window.location.href='snacks.html'">
+        <img src="https://cdn-icons-png.flaticon.com/512/3082/3082039.png" alt="Snacks">
+        <h2>🍪 Mira nuestras opciones</h2>
+        <p>Descubre nuestras mezclas de snacks saludables listas para disfrutar.</p>
+      </div>
+
+      <div class="option" onclick="window.location.href='personalizado.html'">
+        <img src="https://cdn-icons-png.flaticon.com/512/3041/3041131.png" alt="Personalizar">
+        <h2>🛠️ Crea tu snack personalizado</h2>
+        <p>Elige tus ingredientes favoritos y diseña tu mezcla ideal.</p>
+      </div>
+    </div>
+    <footer>© 2025 Snacks Naturales — Hecho con 💚</footer>
+  </div>
+</body>
+</html>
