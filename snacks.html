@@ -39,7 +39,7 @@ h1 {
 
 .items-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   gap: 15px;
 }
 
@@ -69,30 +69,26 @@ h1 {
 }
 .lupa:hover { transform: scale(1.2); color: #388E3C; }
 
-.price {
-  margin: 5px 0;
-  color: #777;
-}
-
 .select-box {
-  margin: 10px 0;
+  margin-top: 8px;
 }
-
 .select-box select {
   padding: 6px;
   border-radius: 6px;
   border: 1px solid #ccc;
+  width: 100%;
+  font-size: 14px;
 }
 
 .input-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 6px;
-  margin-top: 8px;
+  gap: 8px;
+  margin-top: 10px;
 }
 .btn {
-  width: 26px; height: 26px;
+  width: 30px; height: 30px;
   border: none; border-radius: 50%;
   font-size: 18px; font-weight: bold;
   background: #e8f5e9; color: #4CAF50;
@@ -100,9 +96,8 @@ h1 {
 }
 .btn:hover { transform: scale(1.15); background: #c8e6c9; }
 .item input {
-  width: 70px; padding: 6px;
-  font-size: 14px; border-radius: 6px;
-  border: 1px solid #ccc; text-align: center;
+  width: 40px; text-align: center; border: 1px solid #ccc;
+  border-radius: 6px; padding: 4px;
 }
 
 #total {
@@ -186,13 +181,11 @@ const beneficios = {
 const individuales = [
   {
     nombre: "Granola",
-    precio: 250,
-    opciones: ["Granola clásica", "Granola con miel", "Granola sin azúcar"],
-    img: "https://cdn-icons-png.flaticon.com/512/1530/1530066.png"
+    img: "https://cdn-icons-png.flaticon.com/512/1530/1530066.png",
+    opciones: ["Granola clásica", "Granola con miel", "Granola sin azúcar"]
   },
   {
     nombre: "Maní tostado",
-    precio: 200,
     img: "https://cdn-icons-png.flaticon.com/512/3145/3145765.png"
   }
 ];
@@ -201,22 +194,25 @@ const combinados = [
   {
     nombre: "Mix energético",
     descripcion: "40% maní, 30% almendras, 30% avena integral",
-    precio: 500,
     img: "https://cdn-icons-png.flaticon.com/512/4151/4151564.png"
   },
   {
     nombre: "Mix tropical",
     descripcion: "30% almendras, 40% pasas, 30% coco deshidratado",
-    precio: 550,
     img: "https://cdn-icons-png.flaticon.com/512/263/263115.png"
   },
   {
     nombre: "Mix fitness",
     descripcion: "50% avena, 25% nueces, 25% semillas de chía",
-    precio: 600,
     img: "https://cdn-icons-png.flaticon.com/512/263/263111.png"
   }
 ];
+
+const preciosPorTamaño = {
+  500: 10000,
+  1000: 18000,
+  2000: 34000
+};
 
 const contInd = document.getElementById("snacksIndividuales");
 const contComb = document.getElementById("snacksCombinados");
@@ -225,21 +221,32 @@ const comprarBtn = document.getElementById("comprar");
 
 function crearItem(snack, contenedor) {
   contenedor.innerHTML += `
-  <div class="item" data-nombre="${snack.nombre}" data-precio="${snack.precio}">
+  <div class="item" data-nombre="${snack.nombre}">
     <span class="lupa" title="Ver beneficios">🔍</span>
     <img src="${snack.img}" alt="${snack.nombre}">
     <p><strong>${snack.nombre}</strong></p>
-    <div class="price">$${snack.precio.toLocaleString()} / 100g</div>
+
     ${snack.opciones ? `
-      <div class="select-box">
-        <select>
-          ${snack.opciones.map(o => `<option value="${o}">${o}</option>`).join("")}
-        </select>
-      </div>` : ""}
+    <div class="select-box">
+      <select class="tipo-snack">
+        ${snack.opciones.map(o => `<option value="${o}">${o}</option>`).join("")}
+      </select>
+    </div>` : ""}
+
     ${snack.descripcion ? `<p style="font-size:13px;color:#555;">${snack.descripcion}</p>` : ""}
+
+    <div class="select-box">
+      <select class="tamano">
+        <option value="">Selecciona tamaño</option>
+        <option value="500">500 g - $${preciosPorTamaño[500].toLocaleString()}</option>
+        <option value="1000">1000 g - $${preciosPorTamaño[1000].toLocaleString()}</option>
+        <option value="2000">2000 g - $${preciosPorTamaño[2000].toLocaleString()}</option>
+      </select>
+    </div>
+
     <div class="input-container">
       <button class="btn" data-action="minus">−</button>
-      <input type="number" min="0" step="100" value="0">
+      <input type="number" min="0" value="0" readonly>
       <button class="btn" data-action="plus">+</button>
     </div>
   </div>`;
@@ -250,10 +257,12 @@ combinados.forEach(s => crearItem(s, contComb));
 
 function updateTotal() {
   let total = 0;
-  document.querySelectorAll(".item").forEach(i => {
-    const cantidad = parseInt(i.querySelector("input").value) || 0;
-    const precio = parseInt(i.dataset.precio);
-    total += (cantidad / 100) * precio;
+  document.querySelectorAll(".item").forEach(item => {
+    const cantidad = parseInt(item.querySelector("input").value) || 0;
+    const tamano = item.querySelector(".tamano").value;
+    if (!tamano || cantidad === 0) return;
+    const precio = preciosPorTamaño[tamano];
+    total += cantidad * precio;
   });
   totalDiv.textContent = `Total: $${total.toLocaleString()} COP`;
   comprarBtn.disabled = total === 0;
@@ -261,33 +270,43 @@ function updateTotal() {
 
 document.addEventListener("click", e => {
   const item = e.target.closest(".item");
-  if (item && e.target.classList.contains("btn")) {
+  if (!item) return;
+
+  if (e.target.classList.contains("btn")) {
     const input = item.querySelector("input");
-    let val = parseInt(input.value) || 0;
-    val += e.target.dataset.action === "plus" ? 100 : -100;
-    if (val < 0) val = 0;
+    let val = parseInt(input.value);
+    if (e.target.dataset.action === "plus") val++;
+    else if (val > 0) val--;
     input.value = val;
     updateTotal();
   }
+
+  if (e.target.classList.contains("lupa")) {
+    const nombre = item.dataset.nombre;
+    mostrarBeneficios(nombre);
+  }
 });
 
-// Modal beneficios
+document.addEventListener("change", e => {
+  if (e.target.classList.contains("tamano")) updateTotal();
+});
+
+// Modal de beneficios
 const modal = document.getElementById("modal");
 const close = document.querySelector(".close");
 const benefTitle = document.getElementById("benefTitle");
 const benefList = document.getElementById("benefList");
 
-document.addEventListener("click", e => {
-  if (e.target.classList.contains("lupa")) {
-    const nombre = e.target.closest(".item").dataset.nombre;
-    benefTitle.textContent = nombre;
-    const list = beneficios[nombre] || ["Snack saludable y natural"];
-    benefList.innerHTML = list.map(b => `<li>${b}</li>`).join("");
-    modal.style.display = "block";
-  }
-});
+function mostrarBeneficios(nombre) {
+  benefTitle.textContent = nombre;
+  const list = beneficios[nombre] || ["Snack saludable y natural"];
+  benefList.innerHTML = list.map(b => `<li>${b}</li>`).join("");
+  modal.style.display = "block";
+}
+
 close.onclick = () => modal.style.display = "none";
 window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
 </script>
 </body>
 </html>
+
