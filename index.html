@@ -419,6 +419,13 @@ document.addEventListener("click", e => {
   }
 });
 
+// ✅ Actualiza precio al cambiar el tostado
+document.addEventListener("change", e => {
+  if (e.target.classList.contains("toasted")) {
+    updateProgress();
+  }
+});
+
 // Modal beneficios
 const modal = document.getElementById("modal");
 const close = document.querySelector(".close");
